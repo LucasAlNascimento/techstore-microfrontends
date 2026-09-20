@@ -1,33 +1,33 @@
 {
-  "name": "shell",
+  "name": "catalog",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/shell/src",
+  "sourceRoot": "apps/catalog/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-architects/native-federation:build",
-      "defaultConfiguration": "production",
       "options": {
         "cacheExternalArtifacts": true,
-        "tsConfig": "apps/shell/tsconfig.federation.json"
+        "tsConfig": "apps/catalog/tsconfig.federation.json"
       },
       "configurations": {
         "production": {
-          "target": "shell:esbuild:production"
+          "target": "catalog:esbuild:production"
         },
         "development": {
-          "target": "shell:esbuild:development",
+          "target": "catalog:esbuild:development",
           "dev": true
         }
-      }
+      },
+      "defaultConfiguration": "production"
     },
     "serve": {
       "executor": "@angular-architects/native-federation:build",
       "options": {
-        "target": "shell:serve-original:development",
-        "tsConfig": "apps/shell/tsconfig.federation.json",
+        "target": "catalog:serve-original:development",
+        "tsConfig": "apps/catalog/tsconfig.federation.json",
         "rebuildDelay": 500,
         "cacheExternalArtifacts": true,
         "dev": true,
@@ -42,9 +42,9 @@
       "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "shell:build",
-        "port": 4200,
-        "staticFilePath": "dist/apps/shell/browser",
+        "buildTarget": "catalog:build",
+        "port": 4201,
+        "staticFilePath": "dist/apps/catalog/browser",
         "spa": true
       }
     },
@@ -55,18 +55,18 @@
       ],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/shell",
-        "browser": "apps/shell/src/main.ts",
-        "tsConfig": "apps/shell/tsconfig.app.json",
+        "outputPath": "dist/apps/catalog",
+        "browser": "apps/catalog/src/main.ts",
+        "tsConfig": "apps/catalog/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/shell/public"
+            "input": "apps/catalog/public"
           }
         ],
         "styles": [
-          "apps/shell/src/styles.scss"
+          "apps/catalog/src/styles.scss"
         ],
         "polyfills": [
           "es-module-shims"
@@ -100,14 +100,14 @@
       "executor": "@angular/build:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "port": 4200
+        "port": 4201
       },
       "configurations": {
         "production": {
-          "buildTarget": "shell:esbuild:production"
+          "buildTarget": "catalog:esbuild:production"
         },
         "development": {
-          "buildTarget": "shell:esbuild:development"
+          "buildTarget": "catalog:esbuild:development"
         }
       }
     }
