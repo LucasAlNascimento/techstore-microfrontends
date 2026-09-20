@@ -3,10 +3,8 @@ import { withNativeFederation, shareAll } from '@angular-architects/native-feder
 export default withNativeFederation({
   name: 'catalog',
 
-
-
   exposes: {
-    './Component': './apps/catalog/src/app/app.ts',
+    './Routes': './apps/catalog/src/app/app.routes.ts',
   },
 
   shared: {
