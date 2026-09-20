@@ -1,1 +1,8 @@
-<p>catalog-page works!</p>
+<h1>Catálogo</h1>
+<p>Encontre os melhores produtos para o seu setup.</p>
+
+@if (products$ | async; as products) {
+	@for (product of products; track product.id) {
+  	<app-product-card [product]="product" />
+	}
+}
