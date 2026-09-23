@@ -1,7 +1,9 @@
-import { Component, inject } from '@angular/core';
-import { ProductService } from '../services/product.service';
+import { Component, inject, OnInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { ProductCard } from '../components/product-card';
+import { Store } from '@ngrx/store';
+import { loadProducts } from '../store/catalog.actions';
+import { selectProducts } from '../store/catalog.selectors';
 
 @Component({
   selector: 'app-catalog-page',
@@ -9,8 +11,12 @@ import { ProductCard } from '../components/product-card';
   templateUrl: './catalog-page.html',
   styleUrl: './catalog-page.scss',
 })
-export class CatalogPage {
-	private readonly productService = inject(ProductService);
+export class CatalogPage implements OnInit {
+	private readonly store = inject(Store);
 
-	readonly products$ = this.productService.getProducts();
+	readonly products$ = this.store.select(selectProducts);
+
+	ngOnInit(): void {
+		this.store.dispatch(loadProducts());
+	}
 }
