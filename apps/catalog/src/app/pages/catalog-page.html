@@ -1,6 +1,14 @@
 <h1>Catálogo</h1>
 <p>Encontre os melhores produtos para o seu setup.</p>
 
+@if (loading$ | async) {
+	<p>Carregando produtos...</p>
+}
+
+@if (error$ | async; as error) {
+	<p role="alert">{{ error }}</p>
+}
+
 @if (products$ | async; as products) {
 	@for (product of products; track product.id) {
   	<app-product-card [product]="product" />

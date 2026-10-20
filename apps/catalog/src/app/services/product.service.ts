@@ -9,6 +9,8 @@ export class ProductService {
 	private readonly http = inject(HttpClient);
 
 	getProducts() {
-		return this.http.get<Product[]>('/data/products.json');
+		return this.http.get<Product[]>(
+			'http://localhost:4201/data/products.json'
+		);
 	}
 }

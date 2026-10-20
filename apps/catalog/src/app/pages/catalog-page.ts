@@ -3,7 +3,7 @@ import { AsyncPipe } from '@angular/common';
 import { ProductCard } from '../components/product-card';
 import { Store } from '@ngrx/store';
 import { loadProducts } from '../store/catalog.actions';
-import { selectProducts } from '../store/catalog.selectors';
+import { selectProducts, selectLoading, selectError } from '../store/catalog.selectors';
 
 @Component({
   selector: 'app-catalog-page',
@@ -15,6 +15,8 @@ export class CatalogPage implements OnInit {
 	private readonly store = inject(Store);
 
 	readonly products$ = this.store.select(selectProducts);
+	readonly loading$ = this.store.select(selectLoading);
+	readonly error$ = this.store.select(selectError);
 
 	ngOnInit(): void {
 		this.store.dispatch(loadProducts());
